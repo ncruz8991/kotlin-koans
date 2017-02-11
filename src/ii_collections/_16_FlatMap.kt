@@ -7,12 +7,12 @@ fun example() {
     result == listOf('a', 'b', 'c', '1', '2')
 }
 
+// Return all products ordered by customer
 val Customer.orderedProducts: Set<Product> get() {
-    // Return all products ordered by customer
-    todoCollectionTask()
+    return this.orders.flatMap { it.products } .toSet()
 }
 
+// Return all products that were ordered by at least one customer
 val Shop.allOrderedProducts: Set<Product> get() {
-    // Return all products that were ordered by at least one customer
-    todoCollectionTask()
+    return this.customers.flatMap { it.orderedProducts } .toSet()
 }
