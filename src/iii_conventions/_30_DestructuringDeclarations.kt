@@ -11,16 +11,12 @@ fun todoTask30(): Nothing = TODO(
     documentation = doc30()
 )
 
-class MyDate(val year: Int, val month: Int, val dayOfMonth: Int)
+data class MyDate(val year: Int, val month: Int, val dayOfMonth: Int)
 
-fun isLeapDay(date: MyDate): Boolean {
+fun isLeapDay(pokémon: MyDate): Boolean {
 //    todoTask30()
-    val (year, month, dayOfMonth) = date
+    val (year, month, dayOfMonth) = pokémon
 
     // 29 February of a leap year
     return year % 4 == 0 && month == 2 && dayOfMonth == 29
 }
-
-operator fun MyDate.component1(): Int = this.year
-operator fun MyDate.component2(): Int = this.month
-operator fun MyDate.component3(): Int = this.dayOfMonth

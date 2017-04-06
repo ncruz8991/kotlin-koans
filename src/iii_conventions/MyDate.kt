@@ -26,14 +26,10 @@ operator fun MyDate.compareTo(date2: MyDate): Int {
 }
 
 // _26_InRange
-operator fun DateRange.contains(date: MyDate): Boolean {
-    return date >= start && date <= endInclusive
-}
+operator fun DateRange.contains(date: MyDate): Boolean = date >= start && date <= endInclusive
 
 // _27_RangeTo
-operator fun MyDate.rangeTo(other: MyDate): DateRange {
-    return DateRange(this, other)
-}
+operator fun MyDate.rangeTo(other: MyDate): DateRange = DateRange(this, other)
 
 // _28_ForLoop
 operator fun DateRange.iterator(): Iterator<MyDate> = object : Iterator<MyDate> {
@@ -51,12 +47,10 @@ operator fun DateRange.iterator(): Iterator<MyDate> = object : Iterator<MyDate> 
 // _29_OperatorsOverloading
 class RepeatedTimeInterval(val timeInterval: TimeInterval, val count: Int)
 
-operator fun MyDate.plus(other: TimeInterval): MyDate = this.addTimeIntervals(other, 1)
+operator fun MyDate.plus(other: TimeInterval): MyDate = addTimeIntervals(other, 1)
 
-operator fun MyDate.plus(other: RepeatedTimeInterval): MyDate = this.addTimeIntervals(other.timeInterval, other.count)
+operator fun MyDate.plus(other: RepeatedTimeInterval): MyDate = addTimeIntervals(other.timeInterval, other.count)
 
-operator fun TimeInterval.times(i: Int): RepeatedTimeInterval {
-    return RepeatedTimeInterval(this, i)
-}
+operator fun TimeInterval.times(i: Int): RepeatedTimeInterval = RepeatedTimeInterval(this, i)
 
 // _30_DestructuringDeclarations
