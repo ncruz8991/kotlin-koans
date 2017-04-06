@@ -16,4 +16,3 @@ fun doSomethingStrangeWithCollection(collection: Collection<String>): Collection
                 .groupBy(String::length)
                 .values
                 .maxBy(List<String>::size)
-
