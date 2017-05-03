@@ -1,5 +1,7 @@
 package iii_conventions
 
+import kotlin.comparisons.compareBy
+
 data class MyDate(val year: Int, val month: Int, val dayOfMonth: Int)
 
 enum class TimeInterval {
@@ -11,19 +13,8 @@ enum class TimeInterval {
 class DateRange(val start: MyDate, val endInclusive: MyDate)
 
 // _25_Comparison
-operator fun MyDate.compareTo(date2: MyDate): Int {
-    val yearCompare = this.year.compareTo(date2.year)
-    if (yearCompare != 0) {
-        return yearCompare
-    }
-
-    val monthCompare = this.month.compareTo(date2.month)
-    if (monthCompare != 0) {
-        return monthCompare
-    }
-
-    return this.dayOfMonth.compareTo(date2.dayOfMonth)
-}
+operator fun MyDate.compareTo(date2: MyDate): Int =
+        compareBy<MyDate>({ it.year }, { it.month }, { it.dayOfMonth }).compare(this, date2)
 
 // _26_InRange
 operator fun DateRange.contains(date: MyDate): Boolean = date >= start && date <= endInclusive
