@@ -20,11 +20,23 @@ fun task41(): Nothing = TODO(
 )
 
 fun List<String>.partitionWordsAndLines(): Pair<List<String>, List<String>> {
-    task41()
-//    return partitionTo(ArrayList<String>(), ArrayList()) { s -> !s.contains(" ") }
+    return partitionTo(ArrayList<String>(), ArrayList<String>()) { !it.contains(" ") }
 }
 
+fun List<String>.partitionTo(left: ArrayList<String>, right: ArrayList<String>, predicate: (String) -> Boolean): Pair<List<String>, List<String>>
+        = mutablePartitionMapper(left, right, predicate) { it.toList() }
+
 fun Set<Char>.partitionLettersAndOtherSymbols(): Pair<Set<Char>, Set<Char>> {
-    task41()
-//    return partitionTo(HashSet<Char>(), HashSet()) { c -> c in 'a'..'z' || c in 'A'..'Z'}
+    return partitionTo(HashSet<Char>(), HashSet<Char>()) { c -> c in 'a'..'z' || c in 'A'..'Z'}
+}
+
+fun Set<Char>.partitionTo(left: HashSet<Char>, right: HashSet<Char>, predicate: (Char) -> Boolean): Pair<Set<Char>, Set<Char>>
+        = mutablePartitionMapper(left, right, predicate) { it.toSet() }
+
+fun <M, R> Collection<M>.mutablePartitionMapper(left: MutableCollection<M>,
+                                                right: MutableCollection<M>,
+                                                predicate: (M) -> Boolean,
+                                                mapper: (Collection<M>) -> R): Pair<R, R> {
+    groupBy(predicate).forEach { (key, value) -> if (key) left.addAll(value) else right.addAll(value) }
+    return mapper(left).to(mapper(right))
 }
