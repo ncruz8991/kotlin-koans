@@ -5,8 +5,6 @@ Kotlin Koans
 This repository is my fork of the [original kotlin-koans repository](https://github.com/Kotlin/kotlin-koans).
 It contains my solutions to each Koan, so feel free to take a look at how I implemented each one.
 
-***Currently not finished with solutions. Still working through them!***
-
 # README.md
 
 Kotlin Koans are a series of exercises to get you familiar with the Kotlin Syntax. 
